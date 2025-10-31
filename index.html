@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<!-- saved from url=(0163)https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/246af590a0269037272968cccd27edd6/5004253b-338e-459f-8777-2e11ef272938/canvas-app/index.html -->
+<html lang="en" webcrx=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sai Swaran Teja - AI/ML Engineer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --netflix-red: #E50914;
+            --netflix-dark: #141414;
+            --netflix-gray: #2f2f2f;
+            --netflix-light-gray: #808080;
+            --netflix-white: #ffffff;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--netflix-dark);
+            color: var(--netflix-white);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(20,20,20,0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23141414" width="1200" height="600"/><circle cx="200" cy="150" r="3" fill="%23E50914" opacity="0.3"/><circle cx="800" cy="400" r="2" fill="%23E50914" opacity="0.4"/><circle cx="1000" cy="200" r="2.5" fill="%23E50914" opacity="0.3"/><circle cx="400" cy="500" r="2" fill="%23E50914" opacity="0.5"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+        }
+
+        .hero-content .tagline {
+            font-size: 1.8rem;
+            color: var(--netflix-red);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1.2s ease-out;
+            font-weight: 500;
+        }
+
+        .hero-content .bio {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            color: #cccccc;
+            animation: fadeInUp 1.4s ease-out;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 1.6s ease-out;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background-color: var(--netflix-red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #f40612;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(229, 9, 20, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: var(--netflix-dark);
+            transform: scale(1.05);
+        }
+
+        /* Contact Info Bar */
+        .contact-bar {
+            position: absolute;
+            bottom: 30px;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #cccccc;
+            font-size: 0.95rem;
+        }
+
+        .contact-item a {
+            color: #cccccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--netflix-red);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--netflix-red);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--netflix-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(229, 9, 20, 0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--netflix-red) 0%, #8b0000 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .project-description {
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: rgba(229, 9, 20, 0.2);
+            color: var(--netflix-red);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(229, 9, 20, 0.3);
+        }
+
+        .project-link {
+            display: inline-block;
+            color: var(--netflix-red);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .project-link:hover {
+            color: #f40612;
+            text-decoration: underline;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--netflix-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--netflix-red);
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--netflix-red);
+        }
+
+        .skill-list {
+            list-style: none;
+            line-height: 2;
+        }
+
+        .skill-list li {
+            color: #cccccc;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .skill-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--netflix-red);
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .experience-item {
+            background: var(--netflix-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            position: relative;
+            border-left: 4px solid var(--netflix-red);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .experience-company {
+            color: var(--netflix-red);
+            font-weight: 600;
+        }
+
+        .experience-date {
+            color: var(--netflix-light-gray);
+            font-size: 0.9rem;
+        }
+
+        .experience-description {
+            list-style: none;
+            line-height: 1.8;
+            color: #cccccc;
+        }
+
+        .experience-description li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-description li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--netflix-red);
+        }
+
+        /* Education & Certifications */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--netflix-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            border-top: 3px solid var(--netflix-red);
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .info-card .subtitle {
+            color: var(--netflix-red);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .info-card .detail {
+            color: var(--netflix-light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-link:hover {
+            color: var(--netflix-red);
+        }
+
+        footer p {
+            color: var(--netflix-light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--netflix-red);
+            z-index: 1000;
+            transition: width 0.2s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-content .tagline {
+                font-size: 1.3rem;
+            }
+
+            .hero-content .bio {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid,
+            .skills-container,
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .contact-bar {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+<script src="blob:https://ppl-ai-code-interpreter-files.s3.amazonaws.com/e702151c-e587-41da-91b9-ed2c9249f813"></script></head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>SAI SWARAN TEJA</h1>
+            <p class="tagline">AI/ML Engineer | Python Expert | Transformer Enthusiast</p>
+            <p class="bio">
+                Skilled in Python, transformer models, and multi-modal vision+language pipelines. 
+                Experienced with LLM APIs, OCR integration, and prompt engineering for scalable AI solutions. 
+                Self-driven researcher focused on prototyping production-ready AI systems.
+            </p>
+            <div class="cta-buttons">
+                <a href="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/246af590a0269037272968cccd27edd6/5004253b-338e-459f-8777-2e11ef272938/canvas-app/index.html#projects" class="btn btn-primary">View Projects</a>
+                <a href="https://github.com/Swarantej99" target="_blank" class="btn btn-secondary">GitHub Profile</a>
+            </div>
+        </div>
+        <div class="contact-bar">
+            <div class="contact-item">
+                <span>📧</span>
+                <a href="mailto:sai.swaran99@gmail.com">sai.swaran99@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <span>📱</span>
+                <a href="tel:+919347164389">+91 9347164389</a>
+            </div>
+            <div class="contact-item">
+                <span>📍</span>
+                <span>Hyderabad, India</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <div class="project-image">🤖</div>
+                <div class="project-content">
+                    <h3 class="project-title">RAG Pipeline for LLMs</h3>
+                    <p class="project-description">
+                        Built a Retrieval-Augmented Generation pipeline using Hugging Face and Python to enhance LLM responses with external knowledge. 
+                        Integrated Sentence Transformers and FAISS for fast semantic search and accurate contextual answers.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Hugging Face</span>
+                        <span class="tech-tag">FAISS</span>
+                        <span class="tech-tag">Transformers</span>
+                    </div>
+                    <a href="https://github.com/Swarantej99/Building-a-RAG-Pipeline-for-LLMs.git" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <div class="project-image">🖼️</div>
+                <div class="project-content">
+                    <h3 class="project-title">Image Recognition with PyTorch</h3>
+                    <p class="project-description">
+                        Engineered an image classification system using CNNs with PyTorch framework. 
+                        Enhanced model performance through transfer learning, achieving 92% accuracy in object recognition tasks including breed identification.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">CNN</span>
+                        <span class="tech-tag">Transfer Learning</span>
+                        <span class="tech-tag">OpenCV</span>
+                    </div>
+                    <a href="https://github.com/Swarantej99/Image-recognition-with-ML-using-PyTorch.git" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <div class="project-image">🤝</div>
+                <div class="project-content">
+                    <h3 class="project-title">Multi-Agent System with LLaMA</h3>
+                    <p class="project-description">
+                        Developed autonomous multi-agent research system using Meta LLaMA 3.3 via OpenRouter API. 
+                        Organized Planner, Researcher, and Summarizer agents with LangChain-style coordination for streamlined workflows.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">LLaMA 3.3</span>
+                        <span class="tech-tag">LangChain</span>
+                        <span class="tech-tag">Multi-Agent</span>
+                        <span class="tech-tag">NLP</span>
+                    </div>
+                    <a href="https://github.com/Swarantej99/Building-a-Multi-Agent-System-using-Llama-API-.git" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <div class="project-image">🖼️</div>
+                <div class="project-content">
+                    <h3 class="project-title">British Airways Data Science</h3>
+                    <p class="project-description">
+                        Completed industry simulation focusing on data science for business success. 
+                        Scraped and analyzed customer review data for actionable insights and built predictive models for customer behavior.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Web Scraping</span>
+                        <span class="tech-tag">Predictive Modeling</span>
+                        <span class="tech-tag">Analytics</span>
+                    </div>
+                    <a href="https://github.com/saiswaran99" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <div class="project-image">💼</div>
+                <div class="project-content">
+                    <h3 class="project-title">BCG GenAI Financial Chatbot</h3>
+                    <p class="project-description">
+                        Developed AI-powered financial chatbot analyzing 10-K and 10-Q reports for real-time insights. 
+                        Designed rule-based logic and LLMs for contextual responses ensuring accurate financial analysis.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">GenAI</span>
+                        <span class="tech-tag">LLMs</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Financial Analysis</span>
+                    </div>
+                    <a href="https://github.com/saiswaran99" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <div class="project-image">🖼️</div>
+                <div class="project-content">
+                    <h3 class="project-title">Count Objects in Image</h3>
+                    <p class="project-description">
+                        Developed computer vision system to automatically detect and count objects in images using Python. 
+                        Implemented image processing algorithms for accurate object recognition and enumeration.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">Computer Vision</span>
+                        <span class="tech-tag">Image Processing</span>
+                    </div>
+                    <a href="https://github.com/Swarantej99/Count-Objects-in-Image-using-Python.git" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <div class="project-image">🏥</div>
+                <div class="project-content">
+                    <h3 class="project-title">Synthetic Medical Records using GANs</h3>
+                    <p class="project-description">
+                        Built generative adversarial network to create synthetic medical records for privacy-preserving research. 
+                        Implemented GAN architecture to generate realistic patient data while maintaining confidentiality.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">GANs</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Deep Learning</span>
+                        <span class="tech-tag">Healthcare AI</span>
+                    </div>
+                    <a href="https://github.com/Swarantej99/Building-Synthetic-Medical-Records-using-GANs.git" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <div class="project-image">📧</div>
+                <div class="project-content">
+                    <h3 class="project-title">AI-Powered Email Agent</h3>
+                    <p class="project-description">
+                        Created autonomous email agent using N8N workflow automation and Google Gemini. 
+                        Automated email processing, categorization, and intelligent response generation for streamlined communication.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">N8N</span>
+                        <span class="tech-tag">Google Gemini</span>
+                        <span class="tech-tag">Automation</span>
+                        <span class="tech-tag">NLP</span>
+                    </div>
+                    <a href="https://github.com/Swarantej99/Autonomous-AI-Email-Agent-using-n8n-Google-Gemini.git" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <div class="project-image">📊</div>
+                <div class="project-content">
+                    <h3 class="project-title">One-Line EDA Report Generator</h3>
+                    <p class="project-description">
+                        Developed Python tool to generate comprehensive exploratory data analysis reports with a single line of code. 
+                        Automated statistical analysis, visualizations, and insights generation for rapid data understanding.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">EDA</span>
+                        <span class="tech-tag">Automation</span>
+                    </div>
+                    <a href="https://github.com/Swarantej99/EDA-report-under-one-line-python-code.git" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <div class="project-image">🗄️</div>
+                <div class="project-content">
+                    <h3 class="project-title">EDA using SQL</h3>
+                    <p class="project-description">
+                        Performed comprehensive exploratory data analysis using PostgreSQL to uncover business insights. 
+                        Executed complex queries, statistical analysis, and data profiling for data-driven decision making.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Data Analysis</span>
+                        <span class="tech-tag">Statistics</span>
+                    </div>
+                    <a href="https://github.com/Swarantej99/EDA-using-SQL.git" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <div class="project-image">⚙️</div>
+                <div class="project-content">
+                    <h3 class="project-title">ETL Pipeline using PySpark</h3>
+                    <p class="project-description">
+                        Built scalable ETL pipeline using PySpark for big data processing and transformation. 
+                        Implemented data extraction, cleaning, transformation, and loading workflows for efficient data engineering.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">PySpark</span>
+                        <span class="tech-tag">Apache Spark</span>
+                        <span class="tech-tag">ETL</span>
+                        <span class="tech-tag">Big Data</span>
+                    </div>
+                    <a href="https://github.com/Swarantej99/ETL-pipeline-using-PySpark.git" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+            </div>
+
+            <div class="project-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <div class="project-image">📈</div>
+                <div class="project-content">
+                    <h3 class="project-title">AI Trading Agent</h3>
+                    <p class="project-description">
+                        Developed autonomous AI trading agent using Agentic AI framework for market analysis and decision-making. 
+                        Implemented intelligent trading strategies with real-time data processing and risk management.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Agentic AI</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Trading</span>
+                        <span class="tech-tag">ML</span>
+                    </div>
+                    <a href="https://github.com/Swarantej99/Building-an-AI-Agent-using-Agentic-AI-Trading-Agent-.git" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <h3>Programming &amp; Databases</h3>
+                <ul class="skill-list">
+                    <li>Python (Pandas, NumPy)</li>
+                    <li>PostgreSQL &amp; Data Query Optimization</li>
+                    <li>Git &amp; GitHub</li>
+                    <li>Jupyter Notebook</li>
+                    <li>Docker</li>
+                </ul>
+            </div>
+
+            <div class="skill-category" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <h3>Data Analysis &amp; BI</h3>
+                <ul class="skill-list">
+                    <li>Business Analysis &amp; KPI Reporting</li>
+                    <li>Dashboard Development</li>
+                    <li>Stakeholder Collaboration</li>
+                    <li>Data Visualization</li>
+                    <li>Statistical Analysis</li>
+                </ul>
+            </div>
+
+            <div class="skill-category" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <h3>Generative AI &amp; Deep Learning</h3>
+                <ul class="skill-list">
+                    <li>PyTorch &amp; TensorFlow</li>
+                    <li>Hugging Face Transformers</li>
+                    <li>CNNs &amp; Neural Networks</li>
+                    <li>OpenCV</li>
+                    <li>Model Fine-tuning</li>
+                </ul>
+            </div>
+
+            <div class="skill-category" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <h3>Machine Learning &amp; NLP</h3>
+                <ul class="skill-list">
+                    <li>Large Language Models (LLMs)</li>
+                    <li>RAG Pipelines</li>
+                    <li>Text Generation</li>
+                    <li>Feature Engineering</li>
+                    <li>Prompt Engineering</li>
+                </ul>
+            </div>
+
+            <div class="skill-category" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <h3>Data Modeling &amp; Engineering</h3>
+                <ul class="skill-list">
+                    <li>ETL/ELT Pipelines</li>
+                    <li>Data Modeling &amp; Integration</li>
+                    <li>Data Migration</li>
+                    <li>Data Quality Validation</li>
+                    <li>PySpark &amp; Apache Spark</li>
+                </ul>
+            </div>
+
+            <div class="skill-category" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <h3>Analytics &amp; Visualization</h3>
+                <ul class="skill-list">
+                    <li>Tableau &amp; Power BI</li>
+                    <li>Excel (Pivot Tables, VLOOKUP)</li>
+                    <li>Matplotlib, Seaborn, Plotly</li>
+                    <li>Data Wrangling &amp; Cleaning</li>
+                    <li>Workflow Automation</li>
+                </ul>
+            </div>
+
+            <div class="skill-category" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <h3>Cloud &amp; Deployment</h3>
+                <ul class="skill-list">
+                    <li>Azure Fundamentals</li>
+                    <li>Model Deployment &amp; Integration</li>
+                    <li>Responsible AI Principles</li>
+                    <li>Statistics &amp; Probability</li>
+                    <li>Model Evaluation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Virtual Experience Section -->
+    <section id="virtual-experience">
+        <h2 class="section-title">Virtual Experience</h2>
+        <div class="experience-timeline">
+            <div class="experience-item" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">Data Science Virtual Experience</div>
+                        <div class="experience-company">British Airways - Forage</div>
+                    </div>
+                    <div class="experience-date">April 2025</div>
+                </div>
+                <ul class="experience-description">
+                    <li>Completed industry simulation focusing on how data science drives business success</li>
+                    <li>Scraped and analyzed customer review data to extract actionable business insights</li>
+                    <li>Built predictive model to identify key factors influencing customer purchasing behavior</li>
+                </ul>
+                <a href="https://drive.google.com/file/d/12z1Ow0eCNAQChst9g3_241_4NUhCfi4i/view?usp=drivesdk" target="_blank" class="project-link" style="display: inline-block; margin-top: 1rem;">View Certificate →</a>
+            </div>
+
+            <div class="experience-item" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">Generative AI Virtual Experience</div>
+                        <div class="experience-company">Boston Consulting Group (BCG) - Forage</div>
+                    </div>
+                    <div class="experience-date">March 2025</div>
+                </div>
+                <ul class="experience-description">
+                    <li>Developed AI-powered financial chatbot analyzing 10-K and 10-Q reports for real-time insights</li>
+                    <li>Gained hands-on experience with Python libraries including pandas for data manipulation</li>
+                    <li>Designed rule-based logic and LLMs for contextual responses ensuring accurate financial analysis</li>
+                </ul>
+                <a href="https://drive.google.com/file/d/1RH_9MJwa12bPNYib4O2WXzThDq75yjWG/view?usp=drivesdk" target="_blank" class="project-link" style="display: inline-block; margin-top: 1rem;">View Certificate →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Certifications -->
+    <section id="certifications">
+        <h2 class="section-title">Professional Certifications</h2>
+        <div class="info-grid">
+            <div class="info-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <h3>Data Science Specialization</h3>
+                <div class="subtitle">Cuvette</div>
+                <div class="detail">Comprehensive data science training and certification</div>
+                <a href="https://drive.google.com/file/d/1aUHIFWeVaBgputvT3HDCiuBN5LkUhCXX/view?usp=drivesdk" target="_blank" class="project-link" style="display: inline-block; margin-top: 1rem;">View Certificate →</a>
+            </div>
+
+            <div class="info-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <h3>Azure Fundamentals</h3>
+                <div class="subtitle">Microsoft</div>
+                <div class="detail">Cloud computing and Azure services certification</div>
+                <a href="https://drive.google.com/file/d/1aSaOGJhQ_Xh7BatEet8-gNCcFgCnmzwW/view?usp=drivesdk" target="_blank" class="project-link" style="display: inline-block; margin-top: 1rem;">View Certificate →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="info-grid">
+            <div class="info-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <h3>B.Tech in Electronics and Communications</h3>
+                <div class="subtitle">Malla Reddy Engineering College</div>
+                <div class="detail">2020 - 2024 | CGPA: 7.4/10 | Hyderabad, India</div>
+            </div>
+
+            <div class="info-card" style="opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s;">
+                <h3>Intermediate (MPC)</h3>
+                <div class="subtitle">NRI Junior College</div>
+                <div class="detail">2018 - 2020 | Percentage: 93% | Hyderabad, India</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://linkedin.com/in/sai-swaran-teja-allulla-9a8983258" target="_blank" class="social-link" title="LinkedIn">in</a>
+            <a href="https://github.com/Swarantej99" target="_blank" class="social-link" title="GitHub">gh</a>
+            <a href="mailto:sai.swaran99@gmail.com" class="social-link" title="Email">@</a>
+        </div>
+        <p>© 2025 Sai Swaran Teja. Built with passion for AI/ML innovation.</p>
+    </footer>
+
+    <script>
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Smooth Scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.project-card, .skill-category, .experience-item, .info-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+
+
+<img id="eurekaa_chatgpt_bard_sidebar" src="chrome-extension://aajjgdpofhhcjmjoombjdfepplndhgcp/images/snipp6.svg" draggable="true" title="Gemini [Alt + G]" fs="true"></body></html>
